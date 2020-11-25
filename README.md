@@ -31,9 +31,14 @@ usethis::use_course(url = 'https://github.com/emilyhmarkowitz/NOAATechMemoStarte
 ```r
 library(devtools)
 
+# Functions for Writing R Markdown Reports 
 devtools::install_github("emilyhmarkowitz/RMarkReports")
 
+# NMFS color pallette
 devtools::install_github("nmfs-general-modeling-tools/nmfspalette")
+
+# Easily knit your citations together
+devtools::install_github("cboettig/knitcitations")
 
 ```
 
