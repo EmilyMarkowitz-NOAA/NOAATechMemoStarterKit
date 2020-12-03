@@ -82,6 +82,7 @@ if (designflowin %in% T){
 # Systematically save your plot with this simple function
 plot.list<-SaveGraphs(plot0 = plt, plot.list = plot.list, 
            filename0 = filename0, 
+           Header = Title0,
            cnt.chapt.content = cnt.chapt.content, 
            cnt.figures = cnt.figures, 
            path = dir.chapters, 
