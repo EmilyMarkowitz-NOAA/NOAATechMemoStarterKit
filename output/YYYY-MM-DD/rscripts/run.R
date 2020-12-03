@@ -10,7 +10,7 @@
 
 # Always start with a clean state by removing everything in your environment!
 rm(list=ls())
-
+# renv::init()
 
 ######***KNOWNS#########
 maxyr <- 2021 # or the year of the report, for example
@@ -42,7 +42,7 @@ Chris Oliver, Assistant Administrator for Fisheries "
 
 #######***WHAT KIND OF OUTPUT#######
 #Is this for InDesign? 
-designflowin <- F
+designflowin <- FALSE
 
 #######***REFERENCE WORD DOCUMENT###########
 # Choices: 
@@ -72,90 +72,99 @@ cnt.figures<-0 # This will autoname your figures with consecutive numbers (e.g.,
 cnt.tables<-0 # This will autoname your tables with consecutive numbers (e.g., Table 1.)
 cnt.equ<-0
 
-######***FRONT MATTER############
+######***EXAMPLE############
 cnt.chapt<-auto_counter(cnt.chapt) # The order of the chapter in the report
 cnt.chapt.content<-"001" # The order of the content in the report (e.g., figures, images, tables)
-filename0<-paste0(cnt.chapt, "_FrontMatter_") #Seperated because we'll need it inside the RMarkdown
-rmarkdown::render(paste0(dir.scripts, "/0_frontmatter.Rmd"), 
-                  output_dir = dir.chapters, 
+filename0<-paste0(cnt.chapt, "_Example_") #Seperated because we'll need it inside the RMarkdown
+rmarkdown::render(paste0(dir.scripts, "/00_example.Rmd"),
+                  output_dir = dir.chapters,
                   output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
 
 
-######***ABSTRACT############
-cnt.chapt<-auto_counter(cnt.chapt) 
-cnt.chapt.content<-"001" 
-filename0<-paste0(cnt.chapt, "_Abstract_")
-rmarkdown::render(paste0(dir.scripts, "/1_abstract.rmd"), 
-                  output_dir = dir.chapters, 
-                  output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
-
-######***INTRODUCTION############
-cnt.chapt<-auto_counter(cnt.chapt) 
-cnt.chapt.content<-"001" 
-filename0<-paste0(cnt.chapt, "_Introduction_")
-rmarkdown::render(paste0(dir.scripts, "/2_introduction.rmd"), 
-                  output_dir = dir.chapters, 
-                  output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
-
-######***HISTORY############
-cnt.chapt<-auto_counter(cnt.chapt) 
-cnt.chapt.content<-"001" 
-filename0<-paste0(cnt.chapt, "_History_")
-rmarkdown::render(paste0(dir.scripts, "/3_history.rmd"), 
-                  output_dir = dir.chapters, 
-                  output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
-
-######***METHODS############
-cnt.chapt<-auto_counter(cnt.chapt) 
-cnt.chapt.content<-"001" 
-filename0<-paste0(cnt.chapt, "_Methods_")
-rmarkdown::render(paste0(dir.scripts, "/4_methods.rmd"), 
-                  output_dir = dir.chapters, 
-                  output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
-
-
-######***RESULTS############
-cnt.chapt<-auto_counter(cnt.chapt) 
-cnt.chapt.content<-"001" 
-filename0<-paste0(cnt.chapt, "_Results_")
-rmarkdown::render(paste0(dir.scripts, "/5_results.rmd"), 
-                  output_dir = dir.chapters, 
-                  output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
-
-
-# Run sub-report for (for example) each species of interest
-SpeciesOfInterest<-dat$SCIENTIFIC[1:5]
-for (i in 1:length(SpeciesOfInterest)) {
-  cnt.chapt.content<-auto_counter(cnt.chapt.content)
-  filename0<-paste0(cnt.chapt, "_Results_")
-  rmarkdown::render(paste0(dir.scripts, "/5_results_EachSpecies.rmd"), 
-                    output_dir = dir.chapters, 
-                    output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
-}
-
-######***DISCUSSION############
-cnt.chapt<-auto_counter(cnt.chapt) 
-cnt.chapt.content<-"001" 
-filename0<-paste0(cnt.chapt, "_Discussion_")
-rmarkdown::render(paste0(dir.scripts, "/6_discussion.rmd"), 
-                  output_dir = dir.chapters, 
-                  output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
-
-######***ACKNOWLEGEMENTS############
-cnt.chapt<-auto_counter(cnt.chapt) 
-cnt.chapt.content<-"001" 
-filename0<-paste0(cnt.chapt, "_Acknowledgments_")
-rmarkdown::render(paste0(dir.scripts, "/7_acknowledgments.rmd"), 
-                  output_dir = dir.chapters, 
-                  output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
-
-######***WORKS CITED############
-cnt.chapt<-auto_counter(cnt.chapt) 
-cnt.chapt.content<-"001" 
-filename0<-paste0(cnt.chapt, "_WorksCited_")
-rmarkdown::render(paste0(dir.scripts, "/8_worksCited.rmd"), 
-                  output_dir = dir.chapters, 
-                  output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
+# ######***FRONT MATTER############
+# cnt.chapt<-auto_counter(cnt.chapt) # The order of the chapter in the report
+# cnt.chapt.content<-"001" # The order of the content in the report (e.g., figures, images, tables)
+# filename0<-paste0(cnt.chapt, "_FrontMatter_") #Seperated because we'll need it inside the RMarkdown
+# rmarkdown::render(paste0(dir.scripts, "/0_frontmatter.Rmd"), 
+#                   output_dir = dir.chapters, 
+#                   output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
+# 
+# 
+# ######***ABSTRACT############
+# cnt.chapt<-auto_counter(cnt.chapt) 
+# cnt.chapt.content<-"001" 
+# filename0<-paste0(cnt.chapt, "_Abstract_")
+# rmarkdown::render(paste0(dir.scripts, "/1_abstract.rmd"), 
+#                   output_dir = dir.chapters, 
+#                   output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
+# 
+# ######***INTRODUCTION############
+# cnt.chapt<-auto_counter(cnt.chapt) 
+# cnt.chapt.content<-"001" 
+# filename0<-paste0(cnt.chapt, "_Introduction_")
+# rmarkdown::render(paste0(dir.scripts, "/2_introduction.rmd"), 
+#                   output_dir = dir.chapters, 
+#                   output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
+# 
+# ######***HISTORY############
+# cnt.chapt<-auto_counter(cnt.chapt) 
+# cnt.chapt.content<-"001" 
+# filename0<-paste0(cnt.chapt, "_History_")
+# rmarkdown::render(paste0(dir.scripts, "/3_history.rmd"), 
+#                   output_dir = dir.chapters, 
+#                   output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
+# 
+# ######***METHODS############
+# cnt.chapt<-auto_counter(cnt.chapt) 
+# cnt.chapt.content<-"001" 
+# filename0<-paste0(cnt.chapt, "_Methods_")
+# rmarkdown::render(paste0(dir.scripts, "/4_methods.rmd"), 
+#                   output_dir = dir.chapters, 
+#                   output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
+# 
+# 
+# ######***RESULTS############
+# cnt.chapt<-auto_counter(cnt.chapt) 
+# cnt.chapt.content<-"001" 
+# filename0<-paste0(cnt.chapt, "_Results_")
+# rmarkdown::render(paste0(dir.scripts, "/5_results.rmd"), 
+#                   output_dir = dir.chapters, 
+#                   output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
+# 
+# 
+# # Run sub-report for (for example) each species of interest
+# SpeciesOfInterest<-dat$SCIENTIFIC[1:5]
+# for (i in 1:length(SpeciesOfInterest)) {
+#   cnt.chapt.content<-auto_counter(cnt.chapt.content)
+#   filename0<-paste0(cnt.chapt, "_Results_")
+#   rmarkdown::render(paste0(dir.scripts, "/5_results_EachSpecies.rmd"), 
+#                     output_dir = dir.chapters, 
+#                     output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
+# }
+# 
+# ######***DISCUSSION############
+# cnt.chapt<-auto_counter(cnt.chapt) 
+# cnt.chapt.content<-"001" 
+# filename0<-paste0(cnt.chapt, "_Discussion_")
+# rmarkdown::render(paste0(dir.scripts, "/6_discussion.rmd"), 
+#                   output_dir = dir.chapters, 
+#                   output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
+# 
+# ######***ACKNOWLEGEMENTS############
+# cnt.chapt<-auto_counter(cnt.chapt) 
+# cnt.chapt.content<-"001" 
+# filename0<-paste0(cnt.chapt, "_Acknowledgments_")
+# rmarkdown::render(paste0(dir.scripts, "/7_acknowledgments.rmd"), 
+#                   output_dir = dir.chapters, 
+#                   output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
+# 
+# ######***WORKS CITED############
+# cnt.chapt<-auto_counter(cnt.chapt) 
+# cnt.chapt.content<-"001" 
+# filename0<-paste0(cnt.chapt, "_WorksCited_")
+# rmarkdown::render(paste0(dir.scripts, "/8_worksCited.rmd"), 
+#                   output_dir = dir.chapters, 
+#                   output_file = paste0(filename0, cnt.chapt.content, "_Text.docx"))
 
 
 save(plot.list, file=paste0(dir.output.todaysrun, "/plots/reportPlots"))
@@ -176,4 +185,3 @@ CreateMetadata(dir.out = paste0(dir.output.todaysrun, "/metadata"),
                title = paste0(title0, " Metadata ", Sys.Date()))
 
 setwd(paste0(dir.output.todaysrun))
-packrat::snapshot() 
